@@ -85,19 +85,21 @@ export function Icon(props: IconProps) {
 }
 
 export const iconRegistry = {
+  add: require("../../assets/icons/add.png"),
   back: require("../../assets/icons/back.png"),
   bell: require("../../assets/icons/bell.png"),
   caretLeft: require("../../assets/icons/caretLeft.png"),
   caretRight: require("../../assets/icons/caretRight.png"),
   check: require("../../assets/icons/check.png"),
   clap: require("../../assets/icons/clap.png"),
-  community: require("../../assets/icons/community.png"),
+  flight: require("../../assets/icons/community.png"),
   components: require("../../assets/icons/components.png"),
   debug: require("../../assets/icons/debug.png"),
   github: require("../../assets/icons/github.png"),
   heart: require("../../assets/icons/heart.png"),
   hidden: require("../../assets/icons/hidden.png"),
   ladybug: require("../../assets/icons/ladybug.png"),
+  list: require("../../assets/icons/list.png"),
   lock: require("../../assets/icons/lock.png"),
   menu: require("../../assets/icons/menu.png"),
   more: require("../../assets/icons/more.png"),
@@ -107,6 +109,7 @@ export const iconRegistry = {
   slack: require("../../assets/icons/slack.png"),
   view: require("../../assets/icons/view.png"),
   x: require("../../assets/icons/x.png"),
+  logo: require("../../assets/images/logo.png"),
 }
 
 const $imageStyle: ImageStyle = {

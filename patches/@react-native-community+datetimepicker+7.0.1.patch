@@ -1,0 +1,40 @@
+diff --git a/node_modules/@react-native-community/datetimepicker/ios/RNDateTimePickerManager.m b/node_modules/@react-native-community/datetimepicker/ios/RNDateTimePickerManager.m
+index dbf3a62..9ea1ce6 100644
+--- a/node_modules/@react-native-community/datetimepicker/ios/RNDateTimePickerManager.m
++++ b/node_modules/@react-native-community/datetimepicker/ios/RNDateTimePickerManager.m
+@@ -172,8 +172,10 @@ + (NSString*) datepickerStyleToString: (UIDatePickerStyle) style  API_AVAILABLE(
+         if (json) {
+             UIDatePickerStyle propValue = [RCTConvert RNCUIDatePickerStyle:json];
+             view.preferredDatePickerStyle = propValue;
++            view.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+         } else {
+             view.preferredDatePickerStyle = UIDatePickerStyleAutomatic;
++            view.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+         }
+     }
+ }
+diff --git a/node_modules/@react-native-community/datetimepicker/ios/fabric/RNDateTimePickerComponentView.mm b/node_modules/@react-native-community/datetimepicker/ios/fabric/RNDateTimePickerComponentView.mm
+index 4d2ac59..ff76f50 100644
+--- a/node_modules/@react-native-community/datetimepicker/ios/fabric/RNDateTimePickerComponentView.mm
++++ b/node_modules/@react-native-community/datetimepicker/ios/fabric/RNDateTimePickerComponentView.mm
+@@ -47,6 +47,10 @@ - (instancetype)initWithFrame:(CGRect)frame
+         _picker.datePickerMode = UIDatePickerModeDate;
+         _dummyPicker.datePickerMode = UIDatePickerModeDate;
+ 
++        // We want the picker to be left aligned
++        _picker.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
++        _dummyPicker.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
++
+         self.contentView = _picker;
+     }
+ 
+@@ -257,6 +261,9 @@ - (Boolean)updatePropsForPicker:(UIDatePicker *)picker props:(Props::Shared cons
+         picker.enabled = newPickerProps.enabled;
+     }
+ 
++    _picker.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
++    _dummyPicker.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
++
+     return needsToUpdateMeasurements;
+ }
+ 

@@ -12,14 +12,14 @@ import {
 } from "app/screens"
 
 export type <%= props.pascalCaseName %>NavigatorParamList = {
-  Demo: undefined
+  Main: undefined
 }
 
 const Stack = createStackNavigator<<%= props.pascalCaseName %>NavigatorParamList>()
 export const <%= props.pascalCaseName %>Navigator = () => {
   return (
     <Stack.Navigator screenOptions={{ cardStyle: { backgroundColor: "transparent" }, headerShown: false, }}>
-      <Stack.Screen name="Demo" component={WelcomeScreen} />
+      <Stack.Screen name="Main" component={WelcomeScreen} />
     </Stack.Navigator>
   )
 }

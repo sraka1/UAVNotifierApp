@@ -7,6 +7,8 @@ import React from "react"
 import { AppRegistry } from "react-native"
 import RNBootSplash from "react-native-bootsplash"
 
+exports.fs = null;
+
 function IgniteApp() {
   return <App hideSplashScreen={RNBootSplash.hide} />
 }

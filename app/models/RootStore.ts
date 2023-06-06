@@ -1,14 +1,31 @@
-import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import { AuthenticationStoreModel } from "./AuthenticationStore" // @demo remove-current-line
-import { EpisodeStoreModel } from "./EpisodeStore" // @demo remove-current-line
+import { Instance, SnapshotOut, types, applySnapshot, getSnapshot } from "mobx-state-tree"
+import { AuthenticationStoreModel } from "./AuthenticationStore"
+import { FlightStoreModel } from "./FlightStore"
+import { OperatorStoreModel } from "./OperatorStore"
+import { AircraftStoreModel } from "./AircraftStore"
 
 /**
  * A RootStore model.
  */
-export const RootStoreModel = types.model("RootStore").props({
-  authenticationStore: types.optional(AuthenticationStoreModel, {}), // @demo remove-current-line
-  episodeStore: types.optional(EpisodeStoreModel, {}), // @demo remove-current-line
-})
+export const RootStoreModel = types
+  .model("RootStore")
+  .props({
+    authenticationStore: types.optional(AuthenticationStoreModel, {}),
+    flightStore: types.optional(FlightStoreModel, {}),
+    operatorStore: types.optional(OperatorStoreModel, {}),
+    aircraftStore: types.optional(AircraftStoreModel, {}),
+  })
+  .actions((store) => {
+    let initialState = {}
+    return {
+      afterCreate: () => {
+        initialState = getSnapshot(store)
+      },
+      reset: () => {
+        applySnapshot(store, initialState)
+      },
+    }
+  })
 
 /**
  * The RootStore instance.

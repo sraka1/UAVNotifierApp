@@ -1,37 +1,44 @@
-import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import { Instance, SnapshotOut, types, getParent, hasParent } from "mobx-state-tree"
+import { RootStore } from "./RootStore"
+
+export const UserModel = types.model("User").props({
+  email: types.maybe(types.string),
+  familyName: types.maybe(types.string),
+  givenName: types.maybe(types.string),
+  id: types.maybe(types.string),
+  name: types.maybe(types.string),
+  photo: types.maybe(types.string),
+})
+
+export interface User extends Instance<typeof UserModel> {}
+export interface UserSnapshot extends SnapshotOut<typeof UserModel> {}
 
 export const AuthenticationStoreModel = types
   .model("AuthenticationStore")
   .props({
     authToken: types.maybe(types.string),
-    authEmail: "",
+    user: types.maybe(UserModel),
   })
   .views((store) => ({
     get isAuthenticated() {
       return !!store.authToken
-    },
-    get validationError() {
-      if (store.authEmail.length === 0) return "can't be blank"
-      if (store.authEmail.length < 6) return "must be at least 6 characters"
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(store.authEmail))
-        return "must be a valid email address"
-      return ""
     },
   }))
   .actions((store) => ({
     setAuthToken(value?: string) {
       store.authToken = value
     },
-    setAuthEmail(value: string) {
-      store.authEmail = value.replace(/ /g, "")
+    setUser(user) {
+      store.user = user
     },
     logout() {
-      store.authToken = undefined
-      store.authEmail = ""
+      // store.authToken = undefined
+      // store.user = undefined
+      if (hasParent(store)) {
+        getParent<RootStore>(store).reset()
+      }
     },
   }))
 
 export interface AuthenticationStore extends Instance<typeof AuthenticationStoreModel> {}
 export interface AuthenticationStoreSnapshot extends SnapshotOut<typeof AuthenticationStoreModel> {}
-
-// @demo remove-file

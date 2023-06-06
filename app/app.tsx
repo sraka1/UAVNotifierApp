@@ -11,6 +11,7 @@
  */
 import "./i18n"
 import "./utils/ignoreWarnings"
+import { GoogleSignin } from "@react-native-google-signin/google-signin"
 import { useFonts } from "expo-font"
 import React from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
@@ -48,14 +49,11 @@ const config = {
       path: "",
     },
     Welcome: "welcome",
-    Demo: {
+    Main: {
       screens: {
-        DemoShowroom: {
-          path: "showroom/:queryIndex?/:itemIndex?",
-        },
-        DemoDebug: "debug",
-        DemoPodcastList: "podcast",
-        DemoCommunity: "community",
+        MainSettings: "settings",
+        MainFlightList: "flights",
+        MainFlight: "flight",
       },
     },
   },
@@ -100,6 +98,16 @@ function App(props: AppProps) {
     prefixes: [prefix],
     config,
   }
+
+  GoogleSignin.configure({
+    iosClientId: Config.GOOGLE_SIGN_IN_IOS_CLIENT_ID,
+    scopes: [
+      "profile",
+      "email",
+      "https://www.googleapis.com/auth/gmail.send",
+      "https://www.googleapis.com/auth/gmail.metadata",
+    ],
+  })
 
   // otherwise, we're ready to render the app
   return (

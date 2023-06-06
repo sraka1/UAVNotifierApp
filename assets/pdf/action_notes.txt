@@ -1,0 +1,48 @@
+// This is the reference JS run by the Pošlji najavo button
+// It does not even work...
+
+// This is the form return email. It's hardcoded
+// so that the form is always returned to the same address.
+// Change address on your form to match the code below
+var cToAddr = "uav@caa.si"
+// Set the subject line
+   var cSubLine = "Najava leta UAV / "
+                + this.getField("Naziv operatorja").value + " / "
+                + this.getField("Kategorija dejavnosti").value + " / "
+                + this.getField("FormDateField").value + " / "
+                + this.getField("Čas Od").value + " / "
+                + this.getField("Čas Do").value + " / "
+                + this.getField("Lokacija").value;
+   // Set the body text for the email message
+   var cBody =  "Najava leta UAV \n" + "\n"
+                +"Naziv operatorja: "
+                + this.getField("Naziv operatorja").value + "\n"
+                +"Telefonska številka upravljalca: "
+                + this.getField("Telefonska številka").value + "\n"
+                +"Tip naprave: "
+                + this.getField("Tip naprave").value + "\n"
+                +"Kategorija dejavnosti: "
+                + this.getField("Kategorija dejavnosti").value + "\n"
+                +"Namen leta: "
+                + this.getField("Namen leta 1").value + " "
+                + this.getField("Namen leta 2").value + " "
+                + this.getField("Namen leta 3").value + "\n"
+                +"Datum leta: "
+                + this.getField("FormDateField").value + "\n"
+                +"Čas leta: "
+                + this.getField("Čas Od").value + " "
+                + this.getField("Čas Do").value + "\n"
+                +"Lokacija: "
+                + this.getField("Lokacija").value + "\n"
+                +"Področje letenja: "
+                + this.getField("Področje letenja").value + "\n"
+                +"Datoteka .kmz: "
+                + this.getField("lst1").value + "\n"
+                +"Načrtovana višina letenja: "
+                + this.getField("Višina letenja").value + "\n"
+                +"Največja načrtovana oddaljenost: "
+                + this.getField("Največja oddaljenost").value + "\n" + "\n"
+                +"Shranite prilogo za vaš arhiv.\n"
+                +"Save the mail attachment for your own records.";
+// Send the entire PDF as a file attachment on an email
+this.mailDoc({bUI: true, cTo: cToAddr, cSubject: cSubLine, cMsg: cBody});
