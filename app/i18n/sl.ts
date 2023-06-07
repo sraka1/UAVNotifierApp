@@ -147,6 +147,8 @@ const sl = {
   mainFlightsScreen: {
     title: "Leti",
     onlyPast: "Prikaži samo pretekle lete",
+    downloadPDF: "Prenesi PDF",
+    downloadKML: "Prenesi KML",
     accessibility: {
       switch: "Preklopi na pretekle lete",
     },
