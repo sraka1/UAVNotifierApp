@@ -9,6 +9,7 @@ import { colors, spacing } from "../theme"
 import { translate } from "../i18n"
 
 const welcomeLogo = require("../../assets/images/logo.png")
+const googleLogo = require("../../assets/images/sign-in-google.png")
 
 interface LoginScreenProps extends AppStackScreenProps<"Login"> {}
 
@@ -73,12 +74,21 @@ export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_
         tx="loginScreen.tapToSignIn"
         style={$tapButton}
         // preset="reversed"
+        LeftAccessory={(_props) => <Image style={$googleIcon} source={googleLogo} />}
+
         onPress={login}
         disabled={isSubmitted}
       />
     </Screen>
   )
 })
+
+const $googleIcon: ImageStyle = {
+  position: "absolute",
+  left: 0,
+  top: 0,
+  height: 54,
+}
 
 const $screenContentContainer: ViewStyle = {
   paddingVertical: spacing.huge,

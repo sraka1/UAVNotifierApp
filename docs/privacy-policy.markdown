@@ -1,4 +1,4 @@
-# Privacy policy
+## Privacy policy
 
 ### Collection of Personal Information
 
@@ -15,3 +15,6 @@ We do not disclose your information to any third party as we do not transmit you
 ### Compliance
 
 The use and transfer to any other app of information received from Google APIs adheres to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements.
+
+
+[<- Back to index](./index.markdown)
