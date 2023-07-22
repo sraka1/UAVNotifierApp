@@ -85,7 +85,7 @@ export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_
 
 const $googleIcon: ImageStyle = {
   position: "absolute",
-  left: 0,
+  left: 5,
   top: 0,
   height: 54,
 }

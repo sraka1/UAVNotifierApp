@@ -107,7 +107,7 @@ export const MainSettingsScreen: FC<MainTabScreenProps<"MainAbout">> = observer(
           }
         />
         <View style={$buttonContainer}>
-          <Button style={$button} tx="common.logOut" onPress={logout} />
+          <Button style={$button} tx="common.logOut" onPress={async () => logout()} />
         </View>
         <ListItem
           LeftComponent={

@@ -1,3 +1,4 @@
+import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin"
 import { Instance, SnapshotOut, types, getParent, hasParent } from "mobx-state-tree"
 import { RootStore } from "./RootStore"
 
@@ -31,11 +32,21 @@ export const AuthenticationStoreModel = types
     setUser(user) {
       store.user = user
     },
-    logout() {
+    async logout() {
       // store.authToken = undefined
       // store.user = undefined
       if (hasParent(store)) {
         getParent<RootStore>(store).reset()
+        // The above clears all stores - they are all reset to their initial state
+      }
+      try {
+        // Revokes access to the Google account on logout (people will rarely log out, so this is not a big deal)
+        // https://developer.apple.com/support/offering-account-deletion-in-your-app/
+        // Uses same paradign as described in the link above for Apple Sign-In
+        await GoogleSignin.revokeAccess();
+      } catch (error) {
+        // Something went wrong with the revoke request, but we'll still log the user out
+        console.error(error);
       }
     },
   }))
